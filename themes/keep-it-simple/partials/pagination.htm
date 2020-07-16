@@ -1,0 +1,23 @@
+<div class="column large-full">
+    <nav class="pgn">
+        <ul>
+            {% if posts.currentPage > 1 %}
+                <li><a class="pgn__prev" href="{{ posts.url(posts.currentPage - 1) }}">Prev</a></li>
+            {% endif %}
+
+            {% for pageNum in 1..posts.lastPage %}
+                {% if pageNum == posts.currentPage %}
+                    <li><span class="pgn__num current">{{ pageNum }}</span></li>
+                {% else %}
+                    <li><a class="pgn__num" href="{{ posts.url(pageNum) }}">{{ pageNum }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            <!-- <li><span class="pgn__num dots">…</span></li> -->
+
+            {% if posts.currentPage < posts.lastPage %}
+                <li><a class="pgn__next" href="{{ posts.url(posts.currentPage + 1) }}">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>

@@ -1,0 +1,35 @@
+title = "Category page"
+url = "/topico/:slug/:page?"
+layout = "default"
+description = "Category Page"
+is_hidden = 0
+==
+<?php
+function onEnd()
+{
+  if (isset($this['category']))
+    $this->page->title = $this->category->name;
+  else
+    return $this->controller->run('/404');
+}
+?>
+==
+{% put title %} {{ category.name }} {% endput %}
+
+<div class="s-content">
+    <div class="row">
+        <div id="main" class="s-content__main large-8 column">
+            <div class="row add-bottom">
+                <div class="column large-full">
+                    <h5 class="h-remove-top" style="margin-bottom: 2em">
+                        Tópico: <a href="{{ 'category'|page({ 'slug': category.slug }) }}" title="{{ category.title }}">{{ category.name }}</a>
+                    </h5>
+                </div>
+            </div>
+
+            {% partial 'article-list' %}
+        </div>
+
+        {% partial 'sidebar' %}
+   </div>
+</div>

@@ -1,0 +1,39 @@
+<div id="sidebar" class="s-content__sidebar large-4 column">
+    <div class="widget widget--search">
+        <h3 class="h6">Search</h3>
+        <form method="GET" action="{{ 'search'|page }}">
+            <input type="text" name="search" value="Pesquisar" onblur="if(this.value == '') { this.value = 'Pesquisar'; }" onfocus="if (this.value == 'Pesquisar') { this.value = ''; }" class="text-search">
+            <input type="submit" class="submit-search">
+        </form>
+    </div>
+
+    <div class="widget widget--categories">
+        <h3 class="h6">Tópicos</h3>
+        <ul>
+            {% for category in categories|sort((c1, c2) => c1.name <=> c2.name) %}
+                <li><a href="{{ 'category'|page({ 'slug': category.slug }) }}" title="{{ category.name }}">{{ category.name }}</a> ({{ category.posts.count }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="widget widget_tags">
+        <h3 class="h6">Assuntos</h3>
+        <div class="tagcloud group">
+            {% for tag in blogTags.tags %}
+                <a href="{{ 'tag'|page({'slug': tag.slug }) }}">{{ tag.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+    {# <div class="widget widget_popular">
+        <h3 class="h6">Popular Post.</h3>
+        <ul class="link-list">
+            <li><a href="#">Sint cillum consectetur voluptate.</a></li>
+            <li><a href="#">Lorem ipsum Ullamco commodo.</a></li>
+            <li><a href="#">Fugiat minim eiusmod do.</a></li>
+        </ul>
+    </div> #}
+</div>
+
+
+

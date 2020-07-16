@@ -1,0 +1,44 @@
+title = "Tag page"
+url = "/assunto/:slug/:page?"
+layout = "default"
+description = "Tag Page"
+is_hidden = 0
+==
+<?php
+public function onEnd()
+{
+    try {
+        $perPage = $this->blogPosts->property('postsPerPage');
+        $this['posts'] = Bedard\BlogTags\Models\Tag::where('slug', $this->param('slug'))->first()
+                                                                                        ->posts()
+                                                                                        ->paginate($perPage);
+
+        // Add a "url" helper attribute for linking to each post
+        $this['posts']->each(function($post) {
+            $post->setUrl($this->postPage, $this->controller);
+        });
+    }
+    catch (\Throwable $e) {
+        return $this->controller->run('/404');
+    }
+}
+==
+{% put title %} {{ this.param.slug|capitalize }} {% endput %}
+
+<div class="s-content">
+    <div class="row">
+        <div id="main" class="s-content__main large-8 column">
+            <div class="row add-bottom">
+                <div class="column large-full">
+                    <h5 class="h-remove-top" style="margin-bottom: 2em">
+                        Artigos em: <a href="{{ 'tag'|page({ 'slug': this.param.slug }) }}" title="">{{ this.param.slug|capitalize }}</a>
+                    </h5>
+                </div>
+            </div>
+
+            {% partial 'article-list' %}
+        </div>
+
+        {% partial 'sidebar' %}
+   </div>
+</div>

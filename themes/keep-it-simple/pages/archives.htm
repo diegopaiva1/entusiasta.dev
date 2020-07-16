@@ -1,0 +1,60 @@
+title = "Arquivos"
+url = "/arquivos"
+layout = "default"
+description = "Arquivos"
+is_hidden = 0
+
+[blogPosts]
+postsPerPage = 0
+==
+function onStart()
+{
+    $this['archives'] = new class {
+        public function getUniqueYearPosts($posts) {
+            $uniqueYearsPosts = [];
+
+            foreach ($posts as $post) {
+                $uniqueYearsPosts[$post->published_at->format("Y")][] = $post;
+            }
+
+            return $uniqueYearsPosts;
+        }
+    };
+}
+==
+{% put title %} Arquivos {% endput %}
+
+<div class="s-content">
+    <div class="row">
+        <div id="main" class="s-content__main large-8 column">
+            <section class="page-content">
+                <h2 class="page-content__title h1">Arquivos</h2>
+
+                <p class="lead">Aqui você encontra todos os artigos do blog &#129299; &#128452;</p>
+
+                {% set yearsPosts = archives.getUniqueYearPosts(posts) %}
+
+                <h3>Arquivos por ano</h3>
+
+                {% for year, yearPosts in yearsPosts %}
+                    <ul>
+                        <li><a href="#{{ year }}">{{ year }}</a></li>
+                    </ul>
+                {% endfor %}
+
+                <hr style="margin: 0;">
+
+                {% for year, yearPosts in yearsPosts %}
+                    <div id="{{ year }}"><a name="{{ year }}"><h4><i class="far fa-calendar"></i>&nbsp; {{ year }}</h4></a></div>
+                    <ul>
+                        {% for post in yearPosts %}
+                            <li>{{ post.published_at|date('d M')}} - <a href="{{ 'post'|page({ slug: post.slug }) }}">{{ post.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            </section>
+        </div>
+
+        {% partial 'sidebar' %}
+   </div>
+</div>

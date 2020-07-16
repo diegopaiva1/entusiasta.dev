@@ -1,0 +1,29 @@
+<header class="s-header">
+    <div class="row">
+        <div class="s-header__content column">
+            <h1 class="s-header__logotext">
+                <span style="color: black;">print('</span><a href="{{ 'home'|page(false) }}" title="{{ this.layout.title }}">{{ this.layout.title|lower }}</a><span>')</span>
+            </h1>
+            <p>👨‍💻 &nbsp; Ciência da Computação e Tecnologia.</p>
+        </div>
+    </div> <!-- end row -->
+
+    <nav class="s-header__nav-wrap">
+       <div class="row">
+            <ul class="s-header__nav">
+                <li class="current"><a href="{{ 'home'|page(false) }}">Home</a></li>
+                <li class="has-children"><a title="Tópicos" href="#">Tópicos</a>
+                    <ul>
+                        {% for category in categories %}
+                            <li><a href="{{ 'category'|page({ 'slug': category.slug }) }}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="{{ 'archives'|page }}">Arquivos</a></li>
+            </ul>
+       </div>
+    </nav>
+
+    <a class="header-menu-toggle" href="#0" title="Menu"><span>Menu</span></a>
+</header>
+

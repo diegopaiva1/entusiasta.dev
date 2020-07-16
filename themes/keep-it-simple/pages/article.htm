@@ -1,0 +1,91 @@
+url = "/article/:slug"
+layout = "default"
+is_hidden = 0
+
+[blogPost]
+slug = "{{ :slug }}"
+categoryPage = "category"
+
+[blogRelated]
+slug = "{{ :slug }}"
+results = 5
+orderBy = 0
+direction = "desc"
+postPage = "article"
+
+[comments]
+data-colorscheme = "light"
+data-kid-directed-site = 0
+data-numposts = 10
+data-order-by = "social"
+data-width = 550
+lang = "en"
+
+[nextAndPrev]
+category = "noFilter"
+postPage = "post"
+==
+{% put title %} {{ post.title }} {% endput %}
+
+<div class="s-content">
+    <div class="row add-bottom">
+        <div class="column large-full">
+            <h1 class="h-remove-top">{{ post.title }}</h1>
+            <div class="entry__meta">
+                <ul>
+                    <li>{{ post.published_at|date("M d, Y")}}</li>
+                    <li><a href="#" title="" rel="category tag">
+                        {% for category in post.categories %}
+                            {{ loop.last ? category.name : category.name ~ ', ' }}
+                        {% endfor %}
+                    </a></li>
+                    <li>{{ post.user.full_name }}</li>
+                </ul>
+            </div>
+
+            <div class="post-body" style="text-align: justify;">
+                {{ post.content_html|raw }}
+            </div>
+
+            {% if post.tags|length > 0 %}
+                <p class="entry__tags">
+                    <span><strong>Marcado em</strong></span>:
+                    {% for tag in post.tags %}
+                        <a href="{{ 'tag'|page({ 'slug': tag.slug }) }}">{{ tag.name }}</a>{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+            {% endif %}
+
+            <hr style="margin: 0">
+
+            <ul class="entry__post-nav h-group">
+                {% if prevPost %}
+                    <li class="prev"><a rel="prev" href="{{ prevPost.url }}">
+                        <strong class="h6">Artigo anterior</strong> {{ prevPost.title }}</a>
+                    </li>
+                {% endif %}
+
+                {% if nextPost %}
+                    <li class="next"><a rel="next" href="{{ nextPost.url }}">
+                        <strong class="h6">Próximo artigo</strong> {{ nextPost.title }}</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+            {% if blogRelated.posts|length > 0 %}
+                <div class="related-posts">
+                    <h3 class="half-bottom">Artigos relacionados</h3>
+                    <ul>
+                        {% for related in blogRelated.posts %}
+                            <li>
+                                <a href="{{ related.url }}" title="{{ related.title }}">{{ related.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <div class="fb-comments" data-width="100%"></div>
+        </div>
+    </div>
+</div>

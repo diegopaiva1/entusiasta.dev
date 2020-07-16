@@ -1,0 +1,31 @@
+title = "Search Result"
+layout = "default"
+url = "/search/:search?/:page?"
+
+[searchResult]
+searchTerm = "{{ :search }}"
+pageNumber = "{{ :page }}"
+hightlight = 1
+postsPerPage = 5
+noPostsMessage = "Ooops! Nenhum artigo corresponde ao termo de pesquisa."
+sortOrder = "published_at desc"
+categoryPage = "category"
+postPage = "article"
+==
+{% put title %} Resultados da busca {% endput %}
+
+<div class="s-content">
+    <div class="row">
+        <div id="main" class="s-content__main large-8 column">
+            <div class="row add-bottom">
+                <div class="column large-full">
+                    <h5 class="h-remove-top" style="margin-bottom: 2em"><i class="fas fa-search"></i> Resultados da busca</h5>
+                </div>
+            </div> <!-- end row -->
+
+            {% partial 'article-list' %}
+        </div>
+
+        {% partial 'sidebar' %}
+   </div>
+</div>
