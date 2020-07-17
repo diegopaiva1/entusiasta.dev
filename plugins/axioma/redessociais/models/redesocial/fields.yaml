@@ -1,0 +1,20 @@
+fields:
+    nome:
+        label: Nome
+        span: auto
+        placeholder: 'Ex: Facebook, Instagram, etc.'
+        required: 1
+        type: text
+    url:
+        label: URL
+        span: left
+        placeholder: 'Ex: https://www.facebook.com/diego.paiva.963'
+        required: 1
+        type: text
+    icone:
+        label: Ícone
+        span: left
+        placeholder: 'Ex: <i class="fab fa-facebook"></i>'
+        required: 1
+        type: text
+        comment: 'Somente Fontawesome ou Academicon são permitidos.'

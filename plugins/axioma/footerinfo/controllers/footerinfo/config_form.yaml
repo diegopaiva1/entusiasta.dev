@@ -6,5 +6,7 @@ create:
     redirect: 'axioma/footerinfo/footerinfo/update/:id'
     redirectClose: axioma/footerinfo/footerinfo
 update:
+    title: 'Informações do Footer'
     redirect: axioma/footerinfo/footerinfo
     redirectClose: axioma/footerinfo/footerinfo
+preview: {  }
