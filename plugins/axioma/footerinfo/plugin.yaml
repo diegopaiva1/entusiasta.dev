@@ -1,0 +1,11 @@
+plugin:
+    name: 'axioma.footerinfo::lang.plugin.name'
+    description: 'axioma.footerinfo::lang.plugin.description'
+    author: axioma
+    icon: oc-icon-user
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: 'Informações do Footer'
+        url: axioma/footerinfo/footerinfo/
+        icon: icon-user

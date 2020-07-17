@@ -1,13 +1,20 @@
+[builderDetails]
+modelClass = "Axioma\FooterInfo\Models\FooterInfo"
+identifierValue = 1
+modelKeyColumn = "id"
+displayColumn = "about"
+notFoundMessage = "Registro não encontrado"
+==
 <footer class="s-footer">
     <div class="row s-footer__top">
         <div class="column">
             <div class="tab-full column s-footer__info">
                 <p>
-                    <a href="#"><img width="100" height="100" class="h-pull-left" style="border-radius: 100%" alt="sample-image" src="{{ 'assets/images/eu.jpg'|theme }}"></a>
+                    {% set record = builderDetails.record %}
+
+                    <a href="#"><img width="100" height="100" class="h-pull-left" style="border-radius: 100%" alt="sample-image" src="{{ '/storage/app/media' ~ record.image }}"></a>
                     <h3 class="h6">Sobre</h3>
-                    O blog <a href="">{{ this.layout.title }}</a> é mantido por mim, Diego Paiva (o carinha ao lado), estudante do último semestre
-                    da graduação em Ciência da Computação pela Universidade Federal de Juiz de Fora (UFJF). Neste espaço, compartilho meu conhecimento
-                    através de artigos didáticos em tópicos como Algoritmos e Estruturas de Dados, afim de ajudar outros estudantes nesta jornada de aprendizado.
+                    {{ (record.about)|raw }}
                 </p>
             </div>
             <ul class="s-footer__social">

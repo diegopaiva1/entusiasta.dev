@@ -1,0 +1,12 @@
+fields:
+    image:
+        label: Imagem
+        mode: image
+        span: auto
+        type: mediafinder
+        comment: 'Sua foto pessoal, de preferência.'
+    about:
+        label: Sobre
+        size: ''
+        span: full
+        type: richeditor

@@ -1,0 +1,7 @@
+columns:
+    about:
+        label: Sobre
+        type: text
+    image:
+        label: Imagem
+        type: text
