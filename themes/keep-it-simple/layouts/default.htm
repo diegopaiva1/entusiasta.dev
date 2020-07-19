@@ -4,7 +4,7 @@ description = "Default layout"
 [blogPosts]
 pageNumber = "{{ :page }}"
 categoryFilter = "{{ :slug }}"
-postsPerPage = 1
+postsPerPage = 5
 noPostsMessage = "Ooops! Nenhum artigo encontrado."
 sortOrder = "published_at desc"
 categoryPage = "category"
@@ -46,16 +46,11 @@ direction = "asc"
         ================================================== -->
         <script src="{{ 'assets/js/modernizr.js'|theme }}"></script>
         <script defer src="{{ 'assets/js/fontawesome/all.min.js'|theme }}"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
         <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v7.0" nonce="HiXFmZCH"></script>
-        <script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-        <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-        </script>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v7.0" nonce="HiXFmZCH"></script>
 
         <!-- favicons
         ================================================== -->
