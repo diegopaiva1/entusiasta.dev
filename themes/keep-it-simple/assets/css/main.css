@@ -323,7 +323,7 @@ var, kbd, samp, code, pre {
 }
 
 pre {
-    padding: 1em;
+    padding: 0.5em;
     background: #efefef;
     overflow-x: auto;
 }
