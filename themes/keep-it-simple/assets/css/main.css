@@ -323,8 +323,8 @@ var, kbd, samp, code, pre {
 }
 
 pre {
-    padding: 0.5em;
-    background: #efefef;
+    /* padding: 0.5em; */
+    /* background: #efefef; */
     overflow-x: auto;
 }
 
@@ -332,7 +332,7 @@ pre {
     border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
-/* code {
+code {
     font-size: 1.4rem;
     margin: 0 .2rem;
     padding: .4rem .8rem;
@@ -341,19 +341,19 @@ pre {
     border: 1px solid #d3d3d3;
     color: #272727;
     border-radius: 3px;
-} */
+}
 
-/* pre>code {
+pre>code {
     display: block;
     white-space: pre;
-    line-height: 2;
+    line-height: 1.25;
     padding: 0;
     margin: 0;
-} */
+}
 
-/* pre.prettyprint>code {
+pre.prettyprint>code {
     border: none;
-} */
+}
 
 del {
     text-decoration: line-through;
@@ -1407,7 +1407,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 .s-header__content {
     background-color: #ffffff;
-    background-image: url(../images/header-content-bg_@2x.png);
+    background-image: linear-gradient(rgba(255,255,255,0.94), rgba(255,255,255,0.94)), url(../images/computer-network-computer-icons-distributed-ledger-blockchain-others.png);
     background-size: 361px 256px;
     background-repeat: no-repeat;
     background-position: right top;

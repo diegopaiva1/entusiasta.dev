@@ -28,8 +28,8 @@ pageNumber = "{{ :page }}"
                 </p>
             </div>
             <ul class="s-footer__social">
-                {% for redeSocial in builderList.records %}
-                    <li><a href="{{ redeSocial.url }}" title="{{ redeSocial.nome }}">{{ redeSocial.icone|raw }} </a></li>
+                {% for social in builderList.records %}
+                    <li><a href="{{ social.url }}" title="{{ social.nome }}">{{ social.icone|raw }} </a></li>
                 {% endfor %}
             </ul>
         </div>
