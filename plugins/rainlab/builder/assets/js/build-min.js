@@ -137,7 +137,7 @@ if(column=='allow_null'&&value){updatedRow.primary_key=0}
 if(column=='primary_key'&&!value){updatedRow.auto_increment=0}
 $target.table('setRowValues',rowIndex,updatedRow)}
 DatabaseTable.prototype.onTableLoaded=function(){$(document).trigger('render')
-var $masterTabPane=this.getMasterTabsActivePane(),$form=$masterTabPane.find('form'),$toolbar=$masterTabPane.find('div[data-control=table] div.toolbar'),$addIdButton=$('<a class="btn oc-icon-clock-o builder-custom-table-button" data-builder-command="databaseTable:cmdAddIdColumn"></a>'),$addTimestampsButton=$('<a class="btn oc-icon-clock-o builder-custom-table-button" data-builder-command="databaseTable:cmdAddTimestamps"></a>'),$addSoftDeleteButton=$('<a class="btn oc-icon-refresh builder-custom-table-button" data-builder-command="databaseTable:cmdAddSoftDelete"></a>')
+var $masterTabPane=this.getMasterTabsActivePane(),$form=$masterTabPane.find('form'),$toolbar=$masterTabPane.find('div[data-control=table] div.toolbar'),$addIdButton=$('<a class="btn oc-icon-hashtag builder-custom-table-button" data-builder-command="databaseTable:cmdAddIdColumn"></a>'),$addTimestampsButton=$('<a class="btn oc-icon-clock-o builder-custom-table-button" data-builder-command="databaseTable:cmdAddTimestamps"></a>'),$addSoftDeleteButton=$('<a class="btn oc-icon-refresh builder-custom-table-button" data-builder-command="databaseTable:cmdAddSoftDelete"></a>')
 $addIdButton.text($form.attr('data-lang-add-id'));$toolbar.append($addIdButton)
 $addTimestampsButton.text($form.attr('data-lang-add-timestamps'));$toolbar.append($addTimestampsButton)
 $addSoftDeleteButton.text($form.attr('data-lang-add-soft-delete'));$toolbar.append($addSoftDeleteButton)}
@@ -227,6 +227,16 @@ if(controls===false){$.oc.flashMsg({'text':$.oc.builder.formbuilder.domToPropert
 return}
 var data={controls:controls}
 $target.request('onModelFormSave',{data:data}).done(this.proxy(this.saveFormDone))}
+ModelForm.prototype.cmdAddDatabaseFields=function(ev){var $target=$(ev.currentTarget)
+var $placeholder=this.getMasterTabsActivePane().find('.builder-control-list .control.placeholder:first')[0]
+var fields=$target.find('.control-table').data('oc.table').dataSource.data.filter(function(column){return column.add}).reverse()
+$target.closest('.control-popup').data('oc.popup').hide()
+$.oc.stripeLoadIndicator.show()
+function addField(field){return function(){var defer=$.Deferred()
+$.oc.builder.formbuilder.controller.addControlToPlaceholder($placeholder,field.type,field.label?field.label:field.column,false,field.column).complete(function(){defer.resolve()})
+return defer.promise()};}
+var allFields=$.when({})
+$.each(fields,function(index,field){allFields=allFields.then(addField(field))});$.when(allFields).always($.oc.builder.indexController.hideStripeIndicatorProxy)}
 ModelForm.prototype.cmdOpenForm=function(ev){var form=$(ev.currentTarget).data('form'),model=$(ev.currentTarget).data('modelClass')
 this.indexController.openOrLoadMasterTab($(ev.target),'onModelFormCreateOrOpen',this.makeTabId(model+'-'+form),{file_name:form,model_class:model})}
 ModelForm.prototype.cmdDeleteForm=function(ev){var $target=$(ev.currentTarget)

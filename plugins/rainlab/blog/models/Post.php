@@ -1,19 +1,18 @@
 <?php namespace RainLab\Blog\Models;
 
-use Db;
 use Url;
-use App;
-use Str;
 use Html;
 use Lang;
 use Model;
+use Config;
 use Markdown;
 use BackendAuth;
 use Carbon\Carbon;
-use Backend\Models\User;
+use Backend\Models\User as BackendUser;
 use Cms\Classes\Page as CmsPage;
 use Cms\Classes\Theme;
 use Cms\Classes\Controller;
+use October\Rain\Database\NestedTreeScope;
 use RainLab\Blog\Classes\TagProcessor;
 use ValidationException;
 
@@ -80,20 +79,20 @@ class Post extends Model
      * Relations
      */
     public $belongsTo = [
-        'user' => ['Backend\Models\User']
+        'user' => BackendUser::class
     ];
 
     public $belongsToMany = [
         'categories' => [
-            'RainLab\Blog\Models\Category',
+            Category::class,
             'table' => 'rainlab_blog_posts_categories',
             'order' => 'name'
         ]
     ];
 
     public $attachMany = [
-        'featured_images' => ['System\Models\File', 'order' => 'sort_order'],
-        'content_images'  => ['System\Models\File']
+        'featured_images' => [\System\Models\File::class, 'order' => 'sort_order'],
+        'content_images'  => \System\Models\File::class
     ];
 
     /**
@@ -137,6 +136,17 @@ class Post extends Model
         }
     }
 
+    public function getUserOptions()
+    {
+        $options = [];
+
+        foreach (BackendUser::all() as $user) {
+            $options[$user->id] = $user->fullname . ' ('.$user->login.')';
+        }
+
+        return $options;
+    }
+
     public function beforeSave()
     {
         if (empty($this->user)) {
@@ -152,17 +162,20 @@ class Post extends Model
      * Sets the "url" attribute with a URL to this object.
      * @param string $pageName
      * @param Controller $controller
+     * @param array $params Override request URL parameters
      *
      * @return string
      */
-    public function setUrl($pageName, $controller)
+    public function setUrl($pageName, $controller, $params = [])
     {
-        $params = [
+        $params = array_merge([
             'id'   => $this->id,
-            'slug' => $this->slug
-        ];
+            'slug' => $this->slug,
+        ], $params);
 
-        $params['category'] = $this->categories->count() ? $this->categories->first()->slug : null;
+        if (empty($params['category'])) {
+            $params['category'] = $this->categories->count() ? $this->categories->first()->slug : null;
+        }
 
         // Expose published year, month and day as URL parameters.
         if ($this->published) {
@@ -177,10 +190,10 @@ class Post extends Model
     /**
      * Used to test if a certain user has permission to edit post,
      * returns TRUE if the user is the owner or has other posts access.
-     * @param  User $user
+     * @param  BackendUser $user
      * @return bool
      */
-    public function canEdit(User $user)
+    public function canEdit(BackendUser $user)
     {
         return ($this->user_id == $user->id) || $user->hasAnyAccess(['rainlab.blog.access_other_posts']);
     }
@@ -188,6 +201,12 @@ class Post extends Model
     public static function formatHtml($input, $preview = false)
     {
         $result = Markdown::parse(trim($input));
+
+        // Check to see if the HTML should be cleaned from potential XSS
+        $user = BackendAuth::getUser();
+        if (!$user || !$user->hasAccess('backend.allow_unsafe_markdown')) {
+            $result = Html::clean($result);
+        }
 
         if ($preview) {
             $result = str_replace('<pre>', '<pre class="prettyprint">', $result);
@@ -299,7 +318,7 @@ class Post extends Model
         if ($categories !== null) {
             $categories = is_array($categories) ? $categories : [$categories];
             $query->whereHas('categories', function($q) use ($categories) {
-                $q->whereIn('id', $categories);
+                $q->withoutGlobalScope(NestedTreeScope::class)->whereIn('id', $categories);
             });
         }
 
@@ -311,7 +330,7 @@ class Post extends Model
             array_walk($exceptCategories, 'trim');
 
             $query->whereDoesntHave('categories', function ($q) use ($exceptCategories) {
-                $q->whereIn('slug', $exceptCategories);
+                $q->withoutGlobalScope(NestedTreeScope::class)->whereIn('slug', $exceptCategories);
             });
         }
 
@@ -323,7 +342,7 @@ class Post extends Model
 
             $categories = $category->getAllChildrenAndSelf()->lists('id');
             $query->whereHas('categories', function($q) use ($categories) {
-                $q->whereIn('id', $categories);
+                $q->withoutGlobalScope(NestedTreeScope::class)->whereIn('id', $categories);
             });
         }
 
@@ -339,7 +358,7 @@ class Post extends Model
     public function scopeFilterCategories($query, $categories)
     {
         return $query->whereHas('categories', function($q) use ($categories) {
-            $q->whereIn('id', $categories);
+            $q->withoutGlobalScope(NestedTreeScope::class)->whereIn('id', $categories);
         });
     }
 
@@ -353,12 +372,13 @@ class Post extends Model
      */
     public function getHasSummaryAttribute()
     {
-        $more = '<!-- more -->';
+        $more = Config::get('rainlab.blog::summary_separator', '<!-- more -->');
+        $length = Config::get('rainlab.blog::summary_default_length', 600);
 
         return (
             !!strlen(trim($this->excerpt)) ||
             strpos($this->content_html, $more) !== false ||
-            strlen(Html::strip($this->content_html)) > 600
+            strlen(Html::strip($this->content_html)) > $length
         );
     }
 
@@ -376,14 +396,17 @@ class Post extends Model
             return $excerpt;
         }
 
-        $more = '<!-- more -->';
+        $more = Config::get('rainlab.blog::summary_separator', '<!-- more -->');
+
         if (strpos($this->content_html, $more) !== false) {
             $parts = explode($more, $this->content_html);
 
             return array_get($parts, 0);
         }
 
-        return Html::limit($this->content_html, 600);
+        $length = Config::get('rainlab.blog::summary_default_length', 600);
+
+        return Html::limit($this->content_html, $length);
     }
 
     //
@@ -588,8 +611,9 @@ class Post extends Model
             ];
 
             $posts = self::isPublished()
-            ->orderBy('title')
-            ->get();
+                ->orderBy('title')
+                ->get()
+            ;
 
             foreach ($posts as $post) {
                 $postItem = [
@@ -622,7 +646,7 @@ class Post extends Model
 
             $categories = $category->getAllChildrenAndSelf()->lists('id');
             $query->whereHas('categories', function($q) use ($categories) {
-                $q->whereIn('id', $categories);
+                $q->withoutGlobalScope(NestedTreeScope::class)->whereIn('id', $categories);
             });
 
             $posts = $query->get();

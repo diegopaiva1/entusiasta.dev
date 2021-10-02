@@ -3,8 +3,6 @@
 use Str;
 use Model;
 use Url;
-use RainLab\Blog\Models\Post;
-use October\Rain\Router\Helper as RouterHelper;
 use Cms\Classes\Page as CmsPage;
 use Cms\Classes\Theme;
 
@@ -228,7 +226,6 @@ class Category extends Model
             $result['mtime'] = $category->updated_at;
 
             if ($item->nesting) {
-                $categories = $category->getNested();
                 $iterator = function($categories) use (&$iterator, &$item, &$theme, $url) {
                     $branch = [];
 
@@ -250,7 +247,7 @@ class Category extends Model
                     return $branch;
                 };
 
-                $result['items'] = $iterator($categories);
+                $result['items'] = $iterator($category->children);
             }
         }
         elseif ($item->type == 'all-blog-categories') {
@@ -258,8 +255,16 @@ class Category extends Model
                 'items' => []
             ];
 
-            $categories = self::orderBy('name')->get();
+            $categories = self::with('posts_count')->orderBy('name')->get();
             foreach ($categories as $category) {
+                try {
+                    $postCount = $category->posts_count->first()->count ?? null;
+                    if ($postCount === 0) {
+                        continue;
+                    }
+                }
+                catch (\Exception $ex) {}
+
                 $categoryItem = [
                     'title' => $category->name,
                     'url'   => self::getCategoryPageUrl($item->cmsPage, $category, $theme),
