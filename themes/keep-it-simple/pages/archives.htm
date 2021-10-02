@@ -14,7 +14,9 @@ function onStart()
             $uniqueYearsPosts = [];
 
             foreach ($posts as $post) {
-                $uniqueYearsPosts[$post->published_at->format("Y")][] = $post;
+                if ($post->published) {
+                    $uniqueYearsPosts[$post->published_at->format("Y")][] = $post;
+                }
             }
 
             return $uniqueYearsPosts;
@@ -30,13 +32,13 @@ function onStart()
             <section class="page-content">
                 <h2 class="page-content__title h1">Arquivos</h2>
 
-                <p class="lead">Aqui você encontra todos os artigos do blog &#129299; &#128452;</p>
+                <p class="lead">Aqui você encontra todos os artigos do blog 🤓 🗄</p>
 
                 {% set yearsPosts = archives.getUniqueYearPosts(posts) %}
 
                 <h3>Arquivos por ano</h3>
 
-                {% for year, yearPosts in yearsPosts %}
+                {% for year, posts in yearsPosts %}
                     <ul>
                         <li><a href="#{{ year }}">{{ year }}</a></li>
                     </ul>
@@ -44,10 +46,10 @@ function onStart()
 
                 <hr style="margin: 0;">
 
-                {% for year, yearPosts in yearsPosts %}
+                {% for year, posts in yearsPosts %}
                     <div id="{{ year }}"><a name="{{ year }}"><h4><i class="far fa-calendar"></i>&nbsp; {{ year }}</h4></a></div>
                     <ul>
-                        {% for post in yearPosts %}
+                        {% for post in posts %}
                             <li>{{ post.published_at|date('d M')}} - <a href="{{ 'post'|page({ slug: post.slug }) }}">{{ post.title }}</a></li>
                         {% endfor %}
                     </ul>

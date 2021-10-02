@@ -59,7 +59,7 @@ return [
             'port'       => 3306,
             'database'   => 'blog',
             'username'   => 'diego',
-            'password'   => '20642064',
+            'password'   => 'd20646497O',
             'charset'    => 'utf8mb4',
             'collation'  => 'utf8mb4_unicode_ci',
             'prefix'     => '',
