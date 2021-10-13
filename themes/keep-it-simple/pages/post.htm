@@ -89,10 +89,18 @@ postPage = "post"
             <div class="share">
                 <h6>Compartilhar</h6>
                 <!-- Add font awesome icons -->
-                <a href="https://www.facebook.com/sharer.php?u={{ post.url }}"><i class="fab fa-facebook-f fa-3x"></i></a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ post.url }}&title={{ post.title }}"><i class="fab fa-linkedin-in fa-3x"></i></a>
-                <a href="https://twitter.com/share?url={{ post.url }}&text={{ post.title }}"><i class="fab fa-twitter fa-3x"></i></a>
-                <a href="https://reddit.com/submit?url={{ post.url }}&title={{ post.title }}"><i class="fab fa-reddit-alien fa-3x"></i></a>
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ ''|page }}&text={{ post.title }}">
+                    <i class="fab fa-facebook-f fa-3x"></i>
+                </a>
+                <a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url={{ ''|page|escape }}">
+                    <i class="fab fa-linkedin-in fa-3x"></i>
+                </a>
+                <a target="_blank" href="https://twitter.com/share?url={{ ''|page }}&text={{ post.title }}">
+                    <i class="fab fa-twitter fa-3x"></i>
+                </a>
+                <a target="_blank" href="https://reddit.com/submit?url={{ ''|page }}&title={{ post.title }}">
+                    <i class="fab fa-reddit-alien fa-3x"></i>
+                </a>
             </div>
 
             <br>
