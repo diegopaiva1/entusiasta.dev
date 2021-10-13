@@ -1,5 +1,5 @@
 title = "Category page"
-url = "/topico/:slug/:page?"
+url = "/categoria/:slug/:page?"
 layout = "default"
 description = "Category Page"
 is_hidden = 0
@@ -22,12 +22,12 @@ function onEnd()
             <div class="row add-bottom">
                 <div class="column large-full">
                     <h5 class="h-remove-top" style="margin-bottom: 2em">
-                        Tópico: <a href="{{ 'category'|page({ 'slug': category.slug }) }}" title="{{ category.title }}">{{ category.name }}</a>
+                        Categoria: <a href="{{ 'category'|page({ 'slug': category.slug }) }}" title="{{ category.title }}">{{ category.name }}</a>
                     </h5>
                 </div>
             </div>
 
-            {% partial 'article-list' %}
+            {% partial 'postlist' %}
         </div>
 
         {% partial 'sidebar' %}

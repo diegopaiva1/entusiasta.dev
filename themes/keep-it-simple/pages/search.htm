@@ -7,10 +7,10 @@ searchTerm = "{{ :search }}"
 pageNumber = "{{ :page }}"
 hightlight = 1
 postsPerPage = 5
-noPostsMessage = "Ooops! Nenhum artigo corresponde ao termo de pesquisa."
+noPostsMessage = "Ooops! Nenhum post corresponde ao termo de pesquisa."
 sortOrder = "published_at desc"
 categoryPage = "category"
-postPage = "article"
+postPage = "post"
 ==
 {% put title %} Resultados da busca {% endput %}
 
@@ -23,7 +23,7 @@ postPage = "article"
                 </div>
             </div> <!-- end row -->
 
-            {% partial 'article-list' %}
+            {% partial 'postlist' %}
         </div>
 
         {% partial 'sidebar' %}

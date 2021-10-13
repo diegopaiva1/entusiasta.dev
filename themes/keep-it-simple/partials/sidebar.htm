@@ -8,7 +8,7 @@
     </div>
 
     <div class="widget widget--categories">
-        <h3 class="h6">Tópicos</h3>
+        <h3 class="h6">Categorias</h3>
         <ul>
             {% for category in categories|sort((c1, c2) => c1.name <=> c2.name) %}
                 <li><a href="{{ 'category'|page({ 'slug': category.slug }) }}" title="{{ category.name }}">{{ category.name }}</a> ({{ category.posts.count }})</li>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="widget widget_tags">
-        <h3 class="h6">Assuntos</h3>
+        <h3 class="h6">Tags</h3>
         <div class="tagcloud group">
             {% for tag in blogTags.tags %}
                 <a href="{{ 'tag'|page({'slug': tag.slug }) }}">{{ tag.name }}</a>

@@ -1,5 +1,5 @@
-title = "Diego Paiva"
-url = "/home/:page?"
+title = "Home"
+url = "/:page?"
 layout = "default"
 description = "Blog Home Page"
 is_hidden = 0
@@ -11,11 +11,11 @@ is_hidden = 0
         <div id="main" class="s-content__main large-8 column">
             <div class="row add-bottom">
                 <div class="column large-full">
-                    <h5 class="h-remove-top" style="margin-bottom: 2em"><i class="far fa-clock"></i>&nbsp; Artigos recentes</h5>
+                    <h5 class="h-remove-top" style="margin-bottom: 2em"><i class="far fa-clock"></i>&nbsp; Posts recentes</h5>
                 </div>
             </div> <!-- end row -->
 
-            {% partial 'article-list' %}
+            {% partial 'postlist' %}
         </div>
 
         {% partial 'sidebar' %}

@@ -1,5 +1,5 @@
 title = "Tag page"
-url = "/assunto/:slug/:page?"
+url = "/tag/:slug/:page?"
 layout = "default"
 description = "Tag Page"
 is_hidden = 0
@@ -31,12 +31,12 @@ public function onEnd()
             <div class="row add-bottom">
                 <div class="column large-full">
                     <h5 class="h-remove-top" style="margin-bottom: 2em">
-                        Artigos em: <a href="{{ 'tag'|page({ 'slug': this.param.slug }) }}" title="">{{ this.param.slug|capitalize }}</a>
+                        Posts em: <a href="{{ 'tag'|page({ 'slug': this.param.slug }) }}" title="">{{ this.param.slug|capitalize }}</a>
                     </h5>
                 </div>
             </div>
 
-            {% partial 'article-list' %}
+            {% partial 'postlist' %}
         </div>
 
         {% partial 'sidebar' %}

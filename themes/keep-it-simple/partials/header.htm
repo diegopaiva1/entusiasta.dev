@@ -14,7 +14,7 @@
        <div class="row">
             <ul class="s-header__nav">
                 <li class="current"><a href="{{ 'home'|page(false) }}">Home</a></li>
-                <li class="has-children"><a title="Tópicos" href="#">Tópicos</a>
+                <li class="has-children"><a title="Categorias" href="#">Categorias</a>
                     <ul>
                         {% for category in categories %}
                             <li><a href="{{ 'category'|page({ 'slug': category.slug }) }}">{{ category.name }}</a></li>

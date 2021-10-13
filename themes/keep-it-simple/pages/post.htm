@@ -1,4 +1,5 @@
-url = "/artigo/:slug"
+title = "Post"
+url = "/post/:slug"
 layout = "default"
 is_hidden = 0
 
@@ -11,7 +12,7 @@ slug = "{{ :slug }}"
 results = 5
 orderBy = 0
 direction = "desc"
-postPage = "article"
+postPage = "post"
 
 [comments]
 data-colorscheme = "light"
@@ -19,7 +20,7 @@ data-kid-directed-site = 0
 data-numposts = 10
 data-order-by = "social"
 data-width = 550
-lang = "en"
+lang = "pt"
 
 [nextAndPrev]
 category = "noFilter"
@@ -61,20 +62,20 @@ postPage = "post"
             <ul class="entry__post-nav h-group">
                 {% if prevPost %}
                     <li class="prev"><a rel="prev" href="{{ prevPost.url }}">
-                        <strong class="h6">Artigo anterior</strong> {{ prevPost.title }}</a>
+                        <strong class="h6">Post anterior</strong> {{ prevPost.title }}</a>
                     </li>
                 {% endif %}
 
                 {% if nextPost %}
                     <li class="next"><a rel="next" href="{{ nextPost.url }}">
-                        <strong class="h6">Próximo artigo</strong> {{ nextPost.title }}</a>
+                        <strong class="h6">Próximo post</strong> {{ nextPost.title }}</a>
                     </li>
                 {% endif %}
             </ul>
 
             {% if blogRelated.posts|length > 0 %}
                 <div class="related-posts">
-                    <h3 class="half-bottom">Artigos relacionados</h3>
+                    <h3 class="half-bottom">Posts relacionados</h3>
                     <ul>
                         {% for related in blogRelated.posts %}
                             <li>
@@ -88,10 +89,10 @@ postPage = "post"
             <div class="share">
                 <h6>Compartilhar</h6>
                 <!-- Add font awesome icons -->
-                <a href="https://www.facebook.com/sharer.php?u={{ url }}"><i class="fab fa-facebook-f fa-3x"></i></a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url }}&title={{ post.title }}"><i class="fab fa-linkedin-in fa-3x"></i></a>
-                <a href="https://twitter.com/share?url={{ url }}&text={{ post.title }}"><i class="fab fa-twitter fa-3x"></i></a>
-                <a href="https://reddit.com/submit?url={{ url }}&title={{ post.title }}"><i class="fab fa-reddit-alien fa-3x"></i></a>
+                <a href="https://www.facebook.com/sharer.php?u={{ post.url }}"><i class="fab fa-facebook-f fa-3x"></i></a>
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ post.url }}&title={{ post.title }}"><i class="fab fa-linkedin-in fa-3x"></i></a>
+                <a href="https://twitter.com/share?url={{ post.url }}&text={{ post.title }}"><i class="fab fa-twitter fa-3x"></i></a>
+                <a href="https://reddit.com/submit?url={{ post.url }}&title={{ post.title }}"><i class="fab fa-reddit-alien fa-3x"></i></a>
             </div>
 
             <br>
