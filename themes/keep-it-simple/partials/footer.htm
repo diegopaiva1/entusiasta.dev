@@ -1,36 +1,23 @@
-[builderDetails]
-modelClass = "Axioma\FooterInfo\Models\FooterInfo"
-identifierValue = 1
-modelKeyColumn = "id"
-displayColumn = "about"
-notFoundMessage = "Registro não encontrado"
-
-[builderList]
-modelClass = "Axioma\RedesSociais\Models\RedeSocial"
-scope = "-"
-scopeValue = "{{ :scope }}"
-displayColumn = "nome"
-noRecordsMessage = "Nenhum registro encontrado"
-detailsPage = "-"
-detailsUrlParameter = "id"
-pageNumber = "{{ :page }}"
-==
 <footer class="s-footer">
     <div class="row s-footer__top">
         <div class="column">
             <div class="tab-full column s-footer__info">
                 <p>
-                    {% set record = builderDetails.record %}
-
-                    <img width="100" height="100" class="h-pull-left" style="border-radius: 100%" alt="sample-image" src="{{ '/storage/app/media' ~ record.image }}">
+                    <img width="100" height="100" class="h-pull-left" style="border-radius: 100%" alt="Diego Paiva" src="{{ '/storage/app/media/eu.jpg' }}">
                     <h3 class="h6">Sobre</h3>
-                    {{ (record.about)|raw }}
+                    <p>
+                        O blog <strong>entusiasta.dev</strong> é mantido por Diego Paiva, programador e bacharel em Ciência da Computação pela UFJF.
+                    </p>
+                    <p>
+                        Neste espaço compartilho temas de meu interesse e documento meu próprio conhecimento, na esperança de ajudar alguns outros programadores por aí.
+                        <i>Enjoy and happy coding</i>!
+                    </p>
                 </p>
             </div>
             <ul class="s-footer__social">
-                {% for social in builderList.records %}
-                    <li><a target="_blank" href="{{ social.url }}" title="{{ social.nome }}">{{ social.icone|raw }} </a></li>
-                {% endfor %}
+                <li><a target="_blank" href="https://github.com/diegopaiva1" title="Github"><i class="fab fa-github"></i></a></li>
+                <li><a target="_blank" href="https://www.kaggle.com/diegopaiva" title="Kaggle"><i class="fab fa-kaggle"></i></a></li>
+                <li><a target="_blank" href="https://www.linkedin.com/in/diego-paiva/" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
             </ul>
         </div>
     </div> <!-- end footer__top -->

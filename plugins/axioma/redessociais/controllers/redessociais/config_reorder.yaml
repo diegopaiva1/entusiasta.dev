@@ -1,5 +1,0 @@
-title: RedesSociais
-modelClass: Axioma\RedesSociais\Models\RedeSocial
-nameFrom: nome
-toolbar:
-    buttons: reorder_toolbar
