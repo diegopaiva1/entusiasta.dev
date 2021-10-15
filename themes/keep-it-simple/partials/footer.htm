@@ -29,7 +29,7 @@ pageNumber = "{{ :page }}"
             </div>
             <ul class="s-footer__social">
                 {% for social in builderList.records %}
-                    <li><a href="{{ social.url }}" title="{{ social.nome }}">{{ social.icone|raw }} </a></li>
+                    <li><a target="_blank" href="{{ social.url }}" title="{{ social.nome }}">{{ social.icone|raw }} </a></li>
                 {% endfor %}
             </ul>
         </div>
