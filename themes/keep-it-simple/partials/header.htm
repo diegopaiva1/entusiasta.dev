@@ -2,7 +2,7 @@
     <div class="row">
         <div class="s-header__content column">
             <h1 class="s-header__logotext">
-                <span style="color: black;">
+                <span class="stmt">
                     print('</span><a href="{{ 'home'|page(false) }}" title="{{ this.layout.title }}">{{ this.layout.title|lower }}</a><span>')
                 </span>
             </h1>
@@ -30,3 +30,8 @@
     <a class="header-menu-toggle" href="#0" title="Menu"><span>Menu</span></a>
 </header>
 
+<style>
+.stmt {
+    font-family: inherit, 'Consolas', 'Courier', monospace;
+}
+</style>

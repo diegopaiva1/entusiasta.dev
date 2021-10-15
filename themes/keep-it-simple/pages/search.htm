@@ -1,5 +1,6 @@
-title = "Search Result"
+title = "Resultados da busca"
 layout = "default"
+description = "Resultados da busca"
 url = "/pesquisar/:search?/:page?"
 
 [searchResult]
@@ -12,7 +13,7 @@ sortOrder = "published_at desc"
 categoryPage = "category"
 postPage = "post"
 ==
-{% put title %} Resultados da busca {% endput %}
+{% put title %} {{ this.page.title }} {% endput %}
 
 <div class="s-content">
     <div class="row">

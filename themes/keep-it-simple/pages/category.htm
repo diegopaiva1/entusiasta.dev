@@ -1,7 +1,7 @@
-title = "Category page"
+title = "Categorias"
 url = "/categoria/:slug/:page?"
 layout = "default"
-description = "Category Page"
+description = "Categorias"
 is_hidden = 0
 ==
 <?php
@@ -14,7 +14,7 @@ function onEnd()
 }
 ?>
 ==
-{% put title %} {{ category.name }} {% endput %}
+{% put title %} {{ this.page.title }} {% endput %}
 
 <div class="s-content">
     <div class="row">
