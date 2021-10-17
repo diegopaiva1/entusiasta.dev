@@ -4,18 +4,16 @@ layout = "default"
 description = "Categorias"
 is_hidden = 0
 ==
-<?php
 function onEnd()
 {
-  if (isset($this['category']))
-    $this->page->title = $this->category->name;
-  else
-    return $this->controller->run('/404');
+    try {
+        $this->page->title = $this->category->name;
+    }
+    catch (\Throwable $e) {
+        return $this->controller->run('/404');
+    }
 }
-?>
 ==
-{% put title %} {{ this.page.title }} {% endput %}
-
 <div class="s-content">
     <div class="row">
         <div id="main" class="s-content__main large-8 column">

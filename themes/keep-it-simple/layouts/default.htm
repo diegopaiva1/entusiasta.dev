@@ -23,7 +23,9 @@ direction = "asc"
 <!DOCTYPE html>
 <html class="no-js" lang="pt">
     <head>
-        <!--- basic page needs
+        <title>{{ this.page.title }}</title>
+
+        <!-- standard meta tags
         ================================================== -->
         <meta charset="utf-8">
         <meta name="rating" content="general">
@@ -33,16 +35,24 @@ direction = "asc"
         <meta name="description" content="{{ this.page.description }}">
         <meta name="keywords" content="entusiasta, dev, programação, computação, desenvolvimento, ciência">
         <meta name="author" content="Diego Paiva">
-
-        <!-- mobile specific metas
-        ================================================== -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	{% placeholder meta %}
 
-        <title>{% placeholder title %}</title>
-        
-	<!-- favicons
+        <!-- Twitter Card -->
+        <meta name="twitter:card" value="summary">
+        <meta name="twitter:title" content="{{ this.page.title }}">
+        <meta name="twitter:description" content="{{ this.page.description }}">
+        {% placeholder twitterImage %}
+
+        <!-- Open Graph -->
+        <meta property="og:title" content="{{ this.page.title }}">
+        <meta property="og:description" content="{{ this.page.description }}">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ this.page.url }}">
+        <meta property="og:site_name" content="entusiasta.dev">
+        <meta property="fb:app_id" content="418807406440133">
+        {% placeholder ogImage %}
+
+	    <!-- favicons
         ================================================== -->
         <link rel="apple-touch-icon" sizes="180x180" href="{{ 'assets/images/apple-touch-icon.png'|theme }}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/images/favicon-32x32.png'|theme }}">

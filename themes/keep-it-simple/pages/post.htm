@@ -26,8 +26,19 @@ lang = "pt"
 category = "noFilter"
 postPage = "post"
 ==
-{% put title %} {{ post.title }} {% endput %}
-{% put meta %} <meta property="og:image" content="{{ post.featured_images[0].path }}" /> {% endput %}
+function onEnd () {
+    $post = $this->components['blogPost'];
+    $post = $post->post;
+
+    $this->page->title = $post->title;
+
+    if ($post->excerpt) {
+        $this->page->description = $post->excerpt;
+    }
+}
+==
+{% put twitterImage %} <meta name="twitter:image" content="{{ post.featured_images[0].path }}"> {% endput %}
+{% put ogImage %} <meta name="og:image" content="{{ post.featured_images[0].path }}"> {% endput %}
 
 <div class="s-content">
     <div class="row add-bottom">

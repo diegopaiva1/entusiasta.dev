@@ -4,10 +4,11 @@ layout = "default"
 description = "Tags"
 is_hidden = 0
 ==
-<?php
 public function onEnd()
 {
     try {
+        $this->page->title = ucfirst($this->param('slug'));
+
         $perPage = $this->blogPosts->property('postsPerPage');
         $this['posts'] = Bedard\BlogTags\Models\Tag::where('slug', $this->param('slug'))->first()
                                                                                         ->posts()
@@ -23,8 +24,6 @@ public function onEnd()
     }
 }
 ==
-{% put title %} {{ this.param.slug|capitalize }} {% endput %}
-
 <div class="s-content">
     <div class="row">
         <div id="main" class="s-content__main large-8 column">
