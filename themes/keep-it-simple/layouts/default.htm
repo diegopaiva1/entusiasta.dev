@@ -41,7 +41,7 @@ direction = "asc"
         <meta name="twitter:card" value="summary">
         <meta name="twitter:title" content="{{ this.page.title }}">
         <meta name="twitter:description" content="{{ this.page.description }}">
-        <meta name="twitter:image" content="https://entusiasta.dev/storage/app/media/icon.png">
+        <meta name="twitter:image" content="{{ thumbnail|default(https://entusiasta.dev/storage/app/media/icon.png) }}">
 
         <!-- Open Graph -->
         <meta property="og:title" content="{{ this.page.title }}">
@@ -49,7 +49,7 @@ direction = "asc"
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ ''|page }}">
         <meta property="og:site_name" content="entusiasta.dev">
-        <meta property="og:image" content="https://entusiasta.dev/storage/app/media/icon.png">
+        <meta property="og:image" content="{{ thumbnail|default(https://entusiasta.dev/storage/app/media/icon.png) }}">
         <meta property="fb:app_id" content="418807406440133">
 
 	    <!-- favicons
