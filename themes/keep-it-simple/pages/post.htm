@@ -30,7 +30,7 @@ function onEnd () {
     $post = $this->components['blogPost'];
     $post = $post->post;
 
-    $this['thumbnail'] = $post->featured_images[0].path;
+    $this['thumbnail'] = $post->featured_images[0]->path;
 
     $this->page->title = $post->title;
 
