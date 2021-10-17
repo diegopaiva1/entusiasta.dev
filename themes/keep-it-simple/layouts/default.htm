@@ -20,6 +20,10 @@ orderBy = "name"
 hideOrphans = 1
 direction = "asc"
 ==
+function onEnd() {
+    $this['thumbnail'] = 'assets/images/android-chrome-192x192.png';
+}
+==
 <!DOCTYPE html>
 <html class="no-js" lang="pt">
     <head>
@@ -41,7 +45,7 @@ direction = "asc"
         <meta name="twitter:card" value="summary">
         <meta name="twitter:title" content="{{ this.page.title }}">
         <meta name="twitter:description" content="{{ this.page.description }}">
-        {% placeholder twitterImage %}
+        <meta name="twitter:image" content="{{ thumbnail }}">
 
         <!-- Open Graph -->
         <meta property="og:title" content="{{ this.page.title }}">
@@ -50,7 +54,8 @@ direction = "asc"
         <meta property="og:url" content="{{ this.page.url }}">
         <meta property="og:site_name" content="entusiasta.dev">
         <meta property="fb:app_id" content="418807406440133">
-        {% placeholder ogImage %}
+        <meta name="twitter:image" content="{{ post.featured_images[0].path }}">
+        <meta property="og:image" content="{{ post.featured_images[0].path }}">
 
 	    <!-- favicons
         ================================================== -->
