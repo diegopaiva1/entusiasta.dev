@@ -38,7 +38,7 @@ function onEnd () {
 }
 ==
 {% put twitterImage %} <meta name="twitter:image" content="{{ post.featured_images[0].path }}"> {% endput %}
-{% put ogImage %} <meta name="og:image" content="{{ post.featured_images[0].path }}"> {% endput %}
+{% put ogImage %} <meta property="og:image" content="{{ post.featured_images[0].path }}"> {% endput %}
 
 <div class="s-content">
     <div class="row add-bottom">
