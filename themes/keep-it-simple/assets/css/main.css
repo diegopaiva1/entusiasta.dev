@@ -1413,7 +1413,6 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     background-position: right top;
     min-height: 30rem;
     padding-top: 12rem;
-    padding-bottom: 8rem;
     border-bottom: 1px dashed #efefef;
     position: relative;
 }
@@ -1704,7 +1703,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 @media screen and (max-width:800px) {
     .s-header__content {
         padding-top: 9.6rem;
-        padding-bottom: 12rem;
+        padding-bottom: 4rem;
         min-height: 0;
         background-size: 310px 220px;
     }
@@ -1797,11 +1796,12 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 @media screen and (max-width:600px) {
     .s-header__content {
+        font-size: 1.4rem;
         background-position: center top;
         text-align: center;
     }
     .s-header__logotext {
-        font-size: 6.4rem;
+        font-size: 4rem;
     }
     .s-header__nav-wrap>.row {
         padding: 0;
@@ -1810,7 +1810,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 @media screen and (max-width:400px) {
     .s-header__logotext {
-        font-size: 6rem;
+        font-size: 3.5rem;
     }
     .s-header__nav {
         margin: 6rem 4rem 4.8rem;
