@@ -1424,7 +1424,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     margin: 0;
     padding: 0;
     width: 100%;
-    font-family: Ubuntu Mono, serif;
+    font-family: 'Ubuntu Mono', 'Droid Sans Mono', monospace;
     font-weight: 400;
     font-size: 7.2rem;
     line-height: 1;
