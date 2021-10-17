@@ -20,10 +20,6 @@ orderBy = "name"
 hideOrphans = 1
 direction = "asc"
 ==
-function onEnd() {
-    $this['thumbnail'] = 'assets/images/android-chrome-192x192.png';
-}
-==
 <!DOCTYPE html>
 <html class="no-js" lang="pt">
     <head>
@@ -45,17 +41,16 @@ function onEnd() {
         <meta name="twitter:card" value="summary">
         <meta name="twitter:title" content="{{ this.page.title }}">
         <meta name="twitter:description" content="{{ this.page.description }}">
-        <meta name="twitter:image" content="{{ thumbnail }}">
+        <meta name="twitter:image" content="https://entusiasta.dev/storage/app/icon.png">
 
         <!-- Open Graph -->
         <meta property="og:title" content="{{ this.page.title }}">
         <meta property="og:description" content="{{ this.page.description }}">
         <meta property="og:type" content="website">
-        <meta property="og:url" content="{{ this.page.url }}">
+        <meta property="og:url" content="{{ ''|page }}">
         <meta property="og:site_name" content="entusiasta.dev">
+        <meta property="og:image" content="https://entusiasta.dev/storage/app/icon.png">
         <meta property="fb:app_id" content="418807406440133">
-        <meta name="twitter:image" content="{{ post.featured_images[0].path }}">
-        <meta property="og:image" content="{{ post.featured_images[0].path }}">
 
 	    <!-- favicons
         ================================================== -->
