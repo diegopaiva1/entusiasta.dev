@@ -43,6 +43,8 @@ function onEnd () {
     <div class="row add-bottom">
         <div class="column large-full">
             <h1 class="h-remove-top">{{ post.title }}</h1>
+	    <small>{{ post.excerpt }}</small>
+		    
             <div class="entry__meta">
                 <ul>
                     <li>{{ post.published_at|date("M d, Y")}}</li>

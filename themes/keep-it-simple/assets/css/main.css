@@ -1174,7 +1174,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
  * ## alert box
  * ------------------------------------------------------------------- */
 .alert-box {
-    padding: 2.4rem 4rem 2.4rem 3.2rem;
+    padding: 2.4rem 4rem 0.1rem 3.2rem;
     position: relative;
     margin-bottom: 3.2rem;
     border-radius: 3px;
