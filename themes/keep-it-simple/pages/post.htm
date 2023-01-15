@@ -29,14 +29,14 @@ postPage = "post"
 function onEnd () {
     $post = $this->components['blogPost'];
     $post = $post->post;
-
-    $this['thumbnail'] = $post->featured_images[0]->path;
-
+	
     $this->page->title = $post->title;
 
-    if ($post->excerpt) {
-        $this->page->description = $post->excerpt;
+    if (count($post->featured_images) > 0) {
+	$this['thumbnail'] = $post->featured_images[0]->path;
     }
+
+   $this->page->description = $post->excerpt;
 }
 ==
 <div class="s-content">

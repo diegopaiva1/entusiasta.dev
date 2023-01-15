@@ -1,5 +1,5 @@
 title = "entusiasta.dev"
-description = "Default layout"
+description = "Um blog sobre computação, ciência & tecnologia"
 
 [blogPosts]
 pageNumber = "{{ :page }}"
@@ -23,7 +23,19 @@ direction = "asc"
 <!DOCTYPE html>
 <html class="no-js" lang="pt">
     <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XMCW38JTL0"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-XMCW38JTL0');
+	</script>
+
         <title>{{ this.page.title }}</title>
+
+	<link rel="canonical" href="{{ ''|page }}">
 
         <!-- standard meta tags
         ================================================== -->
@@ -33,7 +45,7 @@ direction = "asc"
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta name="copyright" content="{{ 'Copyright © Diego Paiva ' ~ 'now' | date('Y') }}">
         <meta name="description" content="{{ this.page.description }}">
-        <meta name="keywords" content="entusiasta, dev, programação, computação, desenvolvimento, ciência">
+        <meta name="keywords" content="entusiasta, dev, programação, computação, desenvolvimento, ciência, tecnologia">
         <meta name="author" content="Diego Paiva">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,15 +56,20 @@ direction = "asc"
         <meta name="twitter:image" content="{{ thumbnail|default('https://entusiasta.dev/storage/app/media/icon.png') }}">
 
         <!-- Open Graph -->
+	<meta property="og:url" content="{{ ''|page }}">
         <meta property="og:title" content="{{ this.page.title }}">
         <meta property="og:description" content="{{ this.page.description }}">
         <meta property="og:type" content="website">
-        <meta property="og:url" content="{{ ''|page }}">
         <meta property="og:site_name" content="entusiasta.dev">
-        <meta property="og:image" content="{{ thumbnail|default('https://entusiasta.dev/storage/app/media/icon.png') }}">
+        <meta property="og:image" itemprop-"image" content="{{ thumbnail|default('https://entusiasta.dev/storage/app/media/icon.png') }}">
         <meta property="fb:app_id" content="418807406440133">
 
-	    <!-- favicons
+
+	<!-- Size of image. Any size up to 300. Anything above 300px will not work in WhatsApp -->
+	<meta property="og:image:width" content="300">
+	<meta property="og:image:height" content="300">
+
+        <!-- favicons
         ================================================== -->
         <link rel="apple-touch-icon" sizes="180x180" href="{{ 'assets/images/apple-touch-icon.png'|theme }}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/images/favicon-32x32.png'|theme }}">
@@ -71,7 +88,7 @@ direction = "asc"
         ================================================== -->
         <script src="{{ 'assets/js/modernizr.js'|theme }}"></script>
         <script defer src="{{ 'assets/js/fontawesome/all.min.js'|theme }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4365429606687819" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
         <div id="fb-root"></div>

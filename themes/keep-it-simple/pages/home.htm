@@ -1,12 +1,12 @@
 title = "Home"
 url = "/:page?"
 layout = "default"
-description = "Um blog sobre programação & outras esquisitices"
 is_hidden = 0
 ==
 function onEnd()
 {
     try {
+    	$this->page->description = $this->layout->description;
         $this->page->title = $this->layout->title;
     }
     catch (\Throwable $e) {
