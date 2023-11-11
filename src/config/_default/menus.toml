@@ -1,0 +1,43 @@
+[[main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+
+[[main]]
+    identifier = "about"
+    name = "Sobre mim"
+    url = "/about"
+    weight = 2
+
+[[main]]
+    identifier = "categories"
+    name = "Categorias"
+    url = "/categories"
+    weight = 3
+
+[[main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags"
+    weight = 4
+
+# Social Media Configuration
+
+[[social]]
+    identifier = "github"
+    name = "GitHub"
+    url = "https://github.com/diegopaiva1"
+    weight = 1
+
+[[social]]
+    identifier = "linkedin"
+    name = "Linkedin"
+    url = "https://www.linkedin.com/in/diego-paiva/"
+    weight = 2
+
+[[social]]
+    identifier = "email"
+    name = "Email"
+    url = "mailto:diegopaivaesilva@gmail.com"
+    weight = 3
