@@ -56,10 +56,7 @@ jobs:
           cache-dependency-path: "./src/**/package-lock.json"
       - name: Install Node dependencies
         working-directory: ./src
-        run: |
-          npm install -g postcss-cli
-          npm install -g autoprefixer
-          npm ci
+        run: npm install
       - name: Build with Hugo
         env:
           # For maximum backward compatibility with Hugo modules
