@@ -1,3 +1,4 @@
+baseURL = 'https://diegopaiva1.github.io/entusiasta.dev'
 copyright = "{year}" # To make 2007 - 2022. Just add before {year} example: 2007 - {year}
 languageCode = 'pt-BR'
 defaultContentLanguage = 'pt'
