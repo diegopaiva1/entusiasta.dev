@@ -46,9 +46,8 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Install Node.js dependencies
         working-directory: ./src
-        run: |
-          npm install -g postcss-cli autoprefixer
-          "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+        run: npm install -g postcss-cli autoprefixer
+        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build with Hugo
         env:
           # For maximum backward compatibility with Hugo modules
